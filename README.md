@@ -6,7 +6,7 @@
 
 ### How to use this image
 * ``` docker pull tobi312/rpi-mpd ```
-* Optional: ``` mkdir -p /home/pi/.config/mpd && mkdir -p /home/pi/.local/share/mpd/data && mkdir -p /home/pi/.local/share/mpd/playlists && chmod 777 -R /home/pi/.local/share/mpd/ && cp mpd.conf /home/pi/.config/mpd/ ```
+* Optional: ``` mkdir -p /home/pi/.config/mpd && mkdir -p /home/pi/.local/share/mpd/data && mkdir -p /home/pi/.local/share/mpd/playlists && chmod 777 -R /home/pi/.local/share/mpd/ && touch /home/pi/.config/mpd/mpd.conf ```
 * ``` docker run --name mpd -v /home/pi/.config/mpd:/mpd/conf -v /home/pi/.local/share/mpd/data:/mpd/data -v /home/pi/.local/share/mpd/playlists:/mpd/playlists -v /home/pi/Music:/mpd/music:ro -p 6600:6600 -p 8000:8000 tobi312/rpi-mpd ``` 
 
 or build it yourself
