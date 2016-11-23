@@ -18,7 +18,7 @@ RUN set -ex \
 COPY mpd.conf /mpd/conf/mpd.conf
 
 RUN set -ex \
-	&& chown -R mpd:audio /mpd \
+	&& chown -R mpd:audio /mpd
 
 RUN [ "cross-build-end" ]
 
