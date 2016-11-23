@@ -1,6 +1,9 @@
-FROM resin/raspberrypi2-debian:latest
+#FROM resin/rpi-raspbian:latest
+FROM jsurf/rpi-raspbian:latest
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
+
+RUN [ "cross-build-start" ]
 
 RUN set -ex \
 	&& apt-get update \
@@ -16,6 +19,8 @@ COPY mpd.conf /mpd/conf/mpd.conf
 
 RUN set -ex \
 	&& chown -R mpd:audio /mpd \
+
+RUN [ "cross-build-end" ]
 
 VOLUME ["/mpd/conf","/mpd/music","/mpd/playlists","/mpd/data","/run/mpd"]
  
