@@ -1,3 +1,4 @@
+#FROM resin/raspberrypi2-debian:latest
 #FROM resin/rpi-raspbian:latest
 FROM jsurf/rpi-raspbian:latest
 
