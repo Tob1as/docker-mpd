@@ -1,5 +1,5 @@
 #FROM resin/raspberrypi2-debian:latest
-FROM tobi312/rpi-raspbian2-debian-qemu:latest
+FROM tobi312/rpi-raspberrypi2-debian-qemu:latest
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
 
