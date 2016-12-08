@@ -26,4 +26,4 @@ VOLUME ["/mpd/conf","/mpd/music","/mpd/playlists","/mpd/data","/run/mpd"]
  
 EXPOSE 6600 8000
 
-ENTRYPOINT ["/usr/bin/mpd", "--no-daemon", "/mpd/conf/mpd.conf"]
+ENTRYPOINT ["/usr/bin/mpd", "--no-daemon", "--stdout", "/mpd/conf/mpd.conf"]
