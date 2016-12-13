@@ -18,7 +18,7 @@ or build it yourself
 * ``` docker build -t tobi312/rpi-mpd . ``` 
 * ``` docker run --name mpd -v /home/pi/.config/mpd:/mpd/conf -v /home/pi/.local/share/mpd/data:/mpd/data -v /home/pi/.local/share/mpd/playlists:/mpd/playlists -v /home/pi/Music:/mpd/music:ro --device=/dev/snd:/dev/snd -p 6600:6600 -p 8000:8000 tobi312/rpi-mpd ``` 
 
-* http://localhost:8000 for Stream | Host: Host/IP , Port: 6600 for MPD Client, example: [GMPC](https://gmpclient.org/)
+* http://localhost:8000 for Stream | Host: Host/IP , Port: 6600 for MPD Client, example: [GMPC](https://gmpclient.org/) or [MPDroid(Android)](https://play.google.com/store/apps/details?id=com.namelessdev.mpdroid)
 
 ### This Image on
 * [DockerHub](https://hub.docker.com/r/tobi312/rpi-mpd/)
