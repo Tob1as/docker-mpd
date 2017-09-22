@@ -4,6 +4,8 @@
 -	[`latest` (*raspbian/Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mpd/blob/master/latest/Dockerfile)
 -	[`alpine` (*alpine/Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mpd/blob/master/alpine/Dockerfile)
 
+(*It always uses the latest version contained in the distributions.*)
+
 ### What is MPD?
 Music Player Daemon (MPD) is a free and open music player server. It plays audio files, organizes playlists and maintains a music database. In order to interact with it, a client program is needed. The MPD distribution includes mpc, a simple command line client.
 > [wikipedia.org/wiki/Music_Player_Daemon](https://en.wikipedia.org/wiki/Music_Player_Daemon) , [musicpd.org](https://www.musicpd.org/) and [github.com/MaxKellermann/MPD](https://github.com/MaxKellermann/MPD)
