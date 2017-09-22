@@ -1,7 +1,8 @@
 # MPD (Music Player Daemon) on Raspberry Pi / armhf
 
 ### Supported tags
--	`latest` (*It always uses the latest MPD version contained in raspbian:jessie.*)
+-	[`latest` (*raspbian/Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mpd/blob/master/latest/Dockerfile)
+-	[`alpine` (*alpine/Dockerfile*)](https://github.com/TobiasH87Docker/rpi-mpd/blob/master/alpine/Dockerfile)
 
 ### What is MPD?
 Music Player Daemon (MPD) is a free and open music player server. It plays audio files, organizes playlists and maintains a music database. In order to interact with it, a client program is needed. The MPD distribution includes mpc, a simple command line client.
