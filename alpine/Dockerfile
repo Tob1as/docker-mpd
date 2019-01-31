@@ -1,4 +1,4 @@
-FROM resin/raspberry-pi-alpine:3.6
+FROM balenalib/raspberry-pi-alpine:3.6
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
 

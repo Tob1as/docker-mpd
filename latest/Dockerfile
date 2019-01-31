@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:stretch
+FROM balenalib/rpi-raspbian:stretch
 
 MAINTAINER Tobias Hargesheimer <docker@ison.ws>
 
