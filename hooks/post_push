@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Autobuild the Image on Docker Hub with advanced options
+# https://docs.docker.com/docker-hub/builds/advanced/
+#
+# https://docs.docker.com/engine/reference/commandline/manifest/
+
+# if the host is not equal to the building system architecture, set the image arch with manifest correctly.
+# Currently this does not work with Autobuild on Docker Hub! Wait ...
+
+set -e
+
+IMAGE_OS="linux"
+HOST_ARCH=$(uname -m)
+BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
+QEMU_USER_STATIC_ARCH=$([[ "${BUILD_ARCH}" == "armhf" ]] && echo "${BUILD_ARCH::-2}" || echo "${BUILD_ARCH}")
+
+if [[ "${BUILD_ARCH}" == *\/* ]]; then BUILD_ARCH=$(echo "${BUILD_ARCH}" | rev | cut -d '/' -f 1 | rev); fi
+
+if [[ "${HOST_ARCH}" == "${QEMU_USER_STATIC_ARCH}"* || "${BUILD_ARCH}" == "Dockerfile"  ]]; then
+    echo "Building ${BUILD_ARCH} image natively; qemu-user-static: Download not required for current arch"
+    exit 0
+else
+    # docker manifest
+    echo "docker manifest (not working with autobuild on docker hub)"
+    #docker manifest create "${IMAGE_NAME}" "${IMAGE_NAME}"
+    #docker manifest annotate "${IMAGE_NAME}" "${IMAGE_NAME}" --os "${IMAGE_OS}" --arch "${QEMU_USER_STATIC_ARCH}"
+    #docker manifest push "${IMAGE_NAME}"
+fi
