@@ -1,4 +1,5 @@
-FROM balenalib/raspberry-pi-alpine:3.9
+#FROM balenalib/raspberry-pi-alpine:3.9
+FROM arm32v6/alpine:3.10
 
 LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 	org.opencontainers.image.title="MPD" \
@@ -7,10 +8,10 @@ LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 	org.opencontainers.image.url="https://hub.docker.com/r/tobi312/rpi-mpd" \
 	org.opencontainers.image.source="https://github.com/Tob1asDocker/rpi-mpd"
 
-ARG CROSS_BUILD_START=":"
-ARG CROSS_BUILD_END=":"
+#ARG CROSS_BUILD_START=":"
+#ARG CROSS_BUILD_END=":"
 
-RUN [ ${CROSS_BUILD_START} ]
+#RUN [ ${CROSS_BUILD_START} ]
 
 RUN set -x && apk --no-cache add \
 	mpd \
@@ -26,4 +27,4 @@ EXPOSE 6600 8000
 
 ENTRYPOINT ["/usr/bin/mpd", "--no-daemon", "--stdout", "/mpd/conf/mpd.conf"]
 
-RUN [ ${CROSS_BUILD_END} ]
+#RUN [ ${CROSS_BUILD_END} ]
