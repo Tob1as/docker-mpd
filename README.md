@@ -2,7 +2,7 @@
 
 ### Supported tags
 -	[`latest` (*raspbian/Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/stretch.armhf.Dockerfile) (*It always uses the latest version contained in raspbian:stretch.*)
--	[`alpine` (*alpine/Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/alpine.armhf.Dockerfile) (*It always uses the latest [version](https://pkgs.alpinelinux.org/package/v3.9/community/armhf/mpd) contained in alpinelinux.*)
+-	[`alpine` (*alpine/Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/alpine.armhf.Dockerfile) (*It always uses the latest [version](https://pkgs.alpinelinux.org/package/v3.10/community/armhf/mpd) contained in alpinelinux.*)
 
 (*It always uses the latest version contained in the distributions.*)
 
