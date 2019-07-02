@@ -13,6 +13,8 @@ LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 
 #RUN [ ${CROSS_BUILD_START} ]
 
+COPY qemu-arm-static /usr/bin
+
 RUN set -x && apk --no-cache add \
 	mpd \
 	mpc \
