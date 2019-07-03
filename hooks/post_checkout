@@ -31,7 +31,9 @@ else
     #curl -SL "${QEMU_USER_STATIC_DOWNLOAD_URL}/${QEMU_USER_STATIC_LATEST_TAG}/${HOST_ARCH}_qemu-${QEMU_USER_STATIC_ARCH}-static.tar.gz" | tar xzv
     curl -SL "${QEMU_USER_STATIC_DOWNLOAD_URL}/${QEMU_USER_STATIC_LATEST_TAG}/qemu-${QEMU_USER_STATIC_ARCH}-static.tar.gz" | tar xzv
 
-    if [[ ! ($(grep "FROM balenalib/" ${DOCKERFILE_PATH}) || $(grep "FROM multiarch/" ${DOCKERFILE_PATH})) ]] ; then
-        echo "The image used does probable not include qemu-user-static. Download starts, you have to add it with \"COPY qemu-${QEMU_USER_STATIC_ARCH}\"-static /usr/bin\" in Dockerfile"
+    if [[ ! ($(grep "FROM balenalib/" ${DOCKERFILE_PATH}) || $(grep "FROM multiarch/" ${DOCKERFILE_PATH}) || $(grep "COPY qemu-${QEMU_USER_STATIC_ARCH}-static /usr/bin" ${DOCKERFILE_PATH})) ]] ; then
+        echo "The image used does probable not include qemu-user-static. Download starts, you have to add it with \"COPY qemu-${QEMU_USER_STATIC_ARCH}-static /usr/bin\" in Dockerfile"
+		# next line add qemu-user-static for you in Dockerfile, comment it out if you don't want it!
+		sed -i "/FROM/a COPY qemu-${QEMU_USER_STATIC_ARCH}-static /usr/bin" ${DOCKERFILE_PATH}
     fi
 fi
