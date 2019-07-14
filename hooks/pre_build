@@ -9,9 +9,8 @@ set -e
 
 HOST_ARCH=$(uname -m)
 BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
+BUILD_ARCH=$([[ "${BUILD_ARCH}" == *\/* ]] && echo "${BUILD_ARCH}" | rev | cut -d '/' -f 1 | rev || echo "${BUILD_ARCH}")
 QEMU_USER_STATIC_ARCH=$([[ "${BUILD_ARCH}" == "armhf" ]] && echo "${BUILD_ARCH::-2}" || echo "${BUILD_ARCH}")
-
-if [[ "${BUILD_ARCH}" == *\/* ]]; then BUILD_ARCH=$(echo "${BUILD_ARCH}" | rev | cut -d '/' -f 1 | rev); fi
 
 if [[ "${HOST_ARCH}" == "${QEMU_USER_STATIC_ARCH}"* || "${BUILD_ARCH}" == "Dockerfile"  ]]; then
     echo "Building ${BUILD_ARCH} image natively; qemu-user-static: Registration not required for current arch"

@@ -7,15 +7,16 @@
 
 set -e
 
+#IMAGE_OS=$(uname | tr '[:upper:]' '[:lower:]')
 IMAGE_OS="linux"
 HOST_ARCH=$(uname -m)
+HOST_ARCH_ALIAS=$([[ "${HOST_ARCH}" == "x86_64" ]] && echo "amd64" || echo "${HOST_ARCH}")
 BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
+BUILD_ARCH=$([[ "${BUILD_ARCH}" == *\/* ]] && echo "${BUILD_ARCH}" | rev | cut -d '/' -f 1 | rev || echo "${BUILD_ARCH}")
 QEMU_USER_STATIC_ARCH=$([[ "${BUILD_ARCH}" == "armhf" ]] && echo "${BUILD_ARCH::-2}" || echo "${BUILD_ARCH}")
-PLATFORMS_ARCH=$([[ "${QEMU_USER_STATIC_ARCH}" == "arm" ]] && echo "${IMAGE_OS}/${QEMU_USER_STATIC_ARCH},${IMAGE_OS}/${QEMU_USER_STATIC_ARCH}64" || echo "${IMAGE_OS}/${QEMU_USER_STATIC_ARCH}")
-TOOL_ARCH=""
+PLATFORMS_ARCH=$([[ "${QEMU_USER_STATIC_ARCH}" == "arm" ]] && echo "${IMAGE_OS}/${QEMU_USER_STATIC_ARCH},${IMAGE_OS}/${QEMU_USER_STATIC_ARCH}64,${IMAGE_OS}/${HOST_ARCH_ALIAS}" || echo "${IMAGE_OS}/${QEMU_USER_STATIC_ARCH}")
 
-if [[ "${BUILD_ARCH}" == *\/* ]]; then BUILD_ARCH=$(echo "${BUILD_ARCH}" | rev | cut -d '/' -f 1 | rev); fi
-if [[ "${HOST_ARCH}" == "x86_64" ]]; then TOOL_ARCH="amd64"; fi
+echo "PLATFORMS-ARCH: ${PLATFORMS_ARCH}"
 
 if [[ "${HOST_ARCH}" == "${QEMU_USER_STATIC_ARCH}"* || "${BUILD_ARCH}" == "Dockerfile"  ]]; then
     echo "Building ${BUILD_ARCH} image natively; No manifest needed for current arch."
@@ -35,7 +36,7 @@ else
     #MANIFEST_TOOL_VERSION=$(curl -s https://api.github.com/repos/estesp/manifest-tool/tags  | grep 'name.*v[0-9]' | head -n 1 | cut -d '"' -f 4)
     # release:
     MANIFEST_TOOL_VERSION=$(curl -s https://api.github.com/repos/estesp/manifest-tool/releases/latest | grep 'tag_name' | cut -d\" -f4)
-    curl -L https://github.com/estesp/manifest-tool/releases/download/$MANIFEST_TOOL_VERSION/manifest-tool-$IMAGE_OS-$TOOL_ARCH -o manifest-tool
+    curl -L https://github.com/estesp/manifest-tool/releases/download/$MANIFEST_TOOL_VERSION/manifest-tool-$IMAGE_OS-$HOST_ARCH_ALIAS -o manifest-tool
     chmod +x manifest-tool
     ./manifest-tool push from-args --platforms ${PLATFORMS_ARCH} --template ${IMAGE_NAME} --target ${IMAGE_NAME}
     

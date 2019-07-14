@@ -3,18 +3,17 @@
 # Autobuild the Image on Docker Hub with advanced options
 # https://docs.docker.com/docker-hub/builds/advanced/
 
-# check host and build architecture; if needed, download latest qemu-user-static
+# check host and build architecture; if needed, download latest qemu-user-static and add optional to the Dockerfile.
 
 set -e
 
 HOST_ARCH=$(uname -m)
 BUILD_ARCH=$(echo "${DOCKERFILE_PATH}" | cut -d '.' -f 2)
+BUILD_ARCH=$([[ "${BUILD_ARCH}" == *\/* ]] && echo "${BUILD_ARCH}" | rev | cut -d '/' -f 1 | rev || echo "${BUILD_ARCH}")
 QEMU_USER_STATIC_ARCH=$([[ "${BUILD_ARCH}" == "armhf" ]] && echo "${BUILD_ARCH::-2}" || echo "${BUILD_ARCH}")
 
 echo "Path: ${DOCKERFILE_PATH} / Build-Arch by File: ${BUILD_ARCH}"
 echo "Host-Arch: ${HOST_ARCH} / Build-Arch: ${QEMU_USER_STATIC_ARCH}"
-
-if [[ "${BUILD_ARCH}" == *\/* ]]; then BUILD_ARCH=$(echo "${BUILD_ARCH}" | rev | cut -d '/' -f 1 | rev); fi
 
 if [[ "${HOST_ARCH}" == "${QEMU_USER_STATIC_ARCH}"* || "${BUILD_ARCH}" == "Dockerfile"  ]]; then
     echo "Building ${BUILD_ARCH} image natively; qemu-user-static: Download not required for current arch"
@@ -31,8 +30,8 @@ else
     #curl -SL "${QEMU_USER_STATIC_DOWNLOAD_URL}/${QEMU_USER_STATIC_LATEST_TAG}/${HOST_ARCH}_qemu-${QEMU_USER_STATIC_ARCH}-static.tar.gz" | tar xzv
     curl -SL "${QEMU_USER_STATIC_DOWNLOAD_URL}/${QEMU_USER_STATIC_LATEST_TAG}/qemu-${QEMU_USER_STATIC_ARCH}-static.tar.gz" | tar xzv
 
-    if [[ ! ($(grep "FROM balenalib/" ${DOCKERFILE_PATH}) || $(grep "FROM multiarch/" ${DOCKERFILE_PATH}) || $(grep "COPY qemu-${QEMU_USER_STATIC_ARCH}-static /usr/bin" ${DOCKERFILE_PATH})) ]] ; then
-        echo "The image used does probable not include qemu-user-static. Download starts, you have to add it with \"COPY qemu-${QEMU_USER_STATIC_ARCH}-static /usr/bin\" in Dockerfile"
+    if [[ ! ($(grep "FROM balenalib/" ${DOCKERFILE_PATH}) || $(grep "FROM multiarch/" ${DOCKERFILE_PATH}) || $(grep "FROM tobi312/rpi-" ${DOCKERFILE_PATH}) || $(grep "COPY qemu-${QEMU_USER_STATIC_ARCH}-static /usr/bin" ${DOCKERFILE_PATH})) ]] ; then
+        echo "The used image has probably not yet integrated qemu-user-static. The following command will now be added to the docker file: \"COPY qemu-${QEMU_USER_STATIC_ARCH}-static /usr/bin\""
 		# next line add qemu-user-static for you in Dockerfile, comment it out if you don't want it!
 		sed -i "/FROM/a COPY qemu-${QEMU_USER_STATIC_ARCH}-static /usr/bin" ${DOCKERFILE_PATH}
     fi
