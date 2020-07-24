@@ -1,17 +1,19 @@
-FROM arm32v7/alpine:3.12
+FROM arm32v7/debian:buster-slim
 
 LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 	org.opencontainers.image.title="MPD" \
-	org.opencontainers.image.description="AlpineLinux with MPD on arm arch" \
+	org.opencontainers.image.description="Debian 10 Buster with MPD on arm arch" \
 	org.opencontainers.image.licenses="Apache-2.0" \
 	org.opencontainers.image.url="https://hub.docker.com/r/tobi312/rpi-mpd" \
 	org.opencontainers.image.source="https://github.com/Tob1asDocker/rpi-mpd"
 
 RUN set -eux ; \
-	apk --no-cache add \
+	apt-get update ; \
+	apt-get install -y \
 		mpd \
 		mpc \
 	; \
+	rm -rf /var/lib/apt/lists/* ; \
 	#chown -R mpd:audio /var/lib/mpd ; \
 	cp /etc/mpd.conf /etc/mpd.conf.backup
 
