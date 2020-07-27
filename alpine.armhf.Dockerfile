@@ -12,7 +12,11 @@ RUN set -eux ; \
 		mpd \
 		mpc \
 	; \
-	#chown -R mpd:audio /var/lib/mpd ; \
+	mkdir /var/log/mpd/data/ ; \
+	chown -R mpd:audio /var/lib/mpd ; \
+	mkdir -p /run/mpd/ ; \
+	chown -R mpd:audio /run/mpd/ ; \
+	#chown mpd:audio /etc/mpd.conf ; \
 	cp /etc/mpd.conf /etc/mpd.conf.backup
 
 COPY mpd.conf /etc/mpd.conf

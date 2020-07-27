@@ -15,12 +15,12 @@ Music Player Daemon (MPD) is a free and open music player server. It plays audio
 
 ### How to use this image
 ```sh
-docker run --name mpd \-p 6600:6600 -p 8000:8000 --device=/dev/snd:/dev/snd -v $(pwd)/music:/var/lib/mpd/music:rw -v $(pwd)/playlists:/var/lib/mpd/playlists:rw -v $(pwd)/playlists:/var/lib/mpd/playlists:rw -v :$(pwd)/db:/var/lib/mpd/database:rw tobi312/rpi-mpd:alpine
+docker run --name mpd -p 6600:6600 -p 8000:8000 --device=/dev/snd:/dev/snd -v $(pwd)/music:/var/lib/mpd/music:rw -v $(pwd)/playlists:/var/lib/mpd/playlists:rw -v $(pwd)/playlists:/var/lib/mpd/playlists:rw -v $(pwd)/data:/var/lib/mpd/data:rw -d tobi312/rpi-mpd:latest
 ```
 
 optional (own config): 
-* download mpd.conf and edit: [mpd.conf](https://github.com/Tob1asDocker/rpi-mpd/blob/master/mpd.conf)
-* add to docker run command: ``` -v :$(pwd)/mpd.conf:/etc/mpd.conf ```
+1. download [mpd.conf](https://github.com/Tob1asDocker/rpi-mpd/blob/master/mpd.conf) and edit
+2. add to docker run command: ``` -v $(pwd)/mpd.conf:/etc/mpd.conf ```
 
 http://localhost:8000 for Stream | Host: Host/IP , Port: 6600 for MPD Client.  
 Example Client: [MPDroid(Android)](https://play.google.com/store/apps/details?id=com.namelessdev.mpdroid), more see https://www.musicpd.org/clients/
@@ -31,15 +31,15 @@ Example Client: [MPDroid(Android)](https://play.google.com/store/apps/details?id
 version: '2.4'
 services:
   mpd:
-    image: tobi312/rpi-mpd:alpine
-    #container_name: mpd
+    image: tobi312/rpi-mpd:latest
+    container_name: mpd
     ports:
       - 6600:6600
       - 8000:8000
     volumes:
       - ./music:/var/lib/mpd/music:rw
       - ./playlists:/var/lib/mpd/playlists:rw
-      #- ./db:/var/lib/mpd/database:rw
+      #- ./data:/var/lib/mpd/data:rw
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
     devices:
