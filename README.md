@@ -2,7 +2,7 @@
 
 ### Supported tags
 -	[`latest` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/debian.armhf.Dockerfile) (Debian 10 Buster (Slim))
--	[`alpine` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/alpine.armhf.Dockerfile) (on [AlpineLinux](https://pkgs.alpinelinux.org/package/v3.12/community/armhf/mpd) 3.12)
+-	[`alpine` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/alpine.armhf.Dockerfile) (on [AlpineLinux](https://pkgs.alpinelinux.org/package/v3.11/community/armhf/mpd) 3.11)
 
 ### What is MPD?
 Music Player Daemon (MPD) is a free and open music player server. It plays audio files, organizes playlists and maintains a music database. In order to interact with it, a client program is needed. The MPD distribution includes mpc, a simple command line client.
