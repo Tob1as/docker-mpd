@@ -32,6 +32,7 @@ version: '2.4'
 services:
   mpd:
     image: tobi312/rpi-mpd:latest
+    #image: tobi312/rpi-mpd:alpine
     container_name: mpd
     ports:
       - 6600:6600
@@ -39,7 +40,9 @@ services:
     volumes:
       - ./music:/var/lib/mpd/music:rw
       - ./playlists:/var/lib/mpd/playlists:rw
-      #- ./data:/var/lib/mpd/data:rw
+      - ./data:/var/lib/mpd/data:rw
+      #- ./mpd.conf:/etc/mpd.conf:rw
+      ## Time:
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
     devices:
