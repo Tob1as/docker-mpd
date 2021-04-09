@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM arm32v7/alpine:3.13
 
 LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 	org.opencontainers.image.title="MPD" \
