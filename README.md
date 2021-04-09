@@ -1,7 +1,7 @@
 # MPD (Music Player Daemon) on Raspberry Pi / ARM
 
 ### Supported tags
--	[`debian`, `latest` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/debian.armhf.Dockerfile) (Debian 10 Buster (Slim))
+-	[`debian` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/debian.armhf.Dockerfile) (Debian 10 Buster (Slim))
 -	[`alpine` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/alpine.armhf.Dockerfile) (on [AlpineLinux](https://pkgs.alpinelinux.org/package/v3.13/community/armhf/mpd) 3.13)
 -	[`alpine-nocap` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/alpine.armhf.3_11.Dockerfile) (on [AlpineLinux](https://pkgs.alpinelinux.org/package/v3.11/community/armhf/mpd) 3.11)
 
@@ -16,7 +16,7 @@ Music Player Daemon (MPD) is a free and open music player server. It plays audio
 
 ### How to use this image
 ```sh
-docker run --name mpd -p 6600:6600 -p 8000:8000 --device=/dev/snd:/dev/snd --cap-add=sys_nice -v $(pwd)/music:/var/lib/mpd/music:rw -v $(pwd)/playlists:/var/lib/mpd/playlists:rw -v $(pwd)/playlists:/var/lib/mpd/playlists:rw -v $(pwd)/data:/var/lib/mpd/data:rw -d tobi312/rpi-mpd:latest
+docker run --name mpd -p 6600:6600 -p 8000:8000 --device=/dev/snd:/dev/snd --cap-add=sys_nice -v $(pwd)/music:/var/lib/mpd/music:rw -v $(pwd)/playlists:/var/lib/mpd/playlists:rw -v $(pwd)/playlists:/var/lib/mpd/playlists:rw -v $(pwd)/data:/var/lib/mpd/data:rw -d tobi312/rpi-mpd:debian
 ```
 
 optional (own config): 

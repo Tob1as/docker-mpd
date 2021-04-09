@@ -5,7 +5,7 @@ services:
     #  context: ./
     #  dockerfile: debian.armhf.Dockerfile
     ##  dockerfile: alpine.armhf.Dockerfile
-    image: tobi312/rpi-mpd:latest
+    image: tobi312/rpi-mpd:debian
     #image: tobi312/rpi-mpd:alpine
     #image: tobi312/rpi-mpd:alpine-nocap
     container_name: mpd
