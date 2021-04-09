@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.11
 
 LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
 	org.opencontainers.image.title="MPD" \

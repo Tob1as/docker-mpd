@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# If use 'docker buildx build' then disable the push of 'docker build', because the push has already been done and fails here.
+
+set -ex
+
+echo "### RUN push: This has already been done by buildx. ###"

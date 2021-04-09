@@ -7,6 +7,7 @@ services:
     ##  dockerfile: alpine.armhf.Dockerfile
     image: tobi312/rpi-mpd:latest
     #image: tobi312/rpi-mpd:alpine
+    #image: tobi312/rpi-mpd:alpine-nocap
     container_name: mpd
     ports:
       - 6600:6600
@@ -21,4 +22,6 @@ services:
       #- /etc/localtime:/etc/localtime:ro
     devices:
       - "/dev/snd:/dev/snd"
+    cap_add:
+      - SYS_NICE
     restart: unless-stopped
