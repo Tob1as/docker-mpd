@@ -32,7 +32,7 @@ Example Client: [MPDroid(Android)](https://play.google.com/store/apps/details?id
 version: '2.4'
 services:
   mpd:
-    image: tobi312/rpi-mpd:latest
+    image: tobi312/rpi-mpd:debian
     #image: tobi312/rpi-mpd:alpine
     #image: tobi312/rpi-mpd:alpine-nocap
     container_name: mpd
