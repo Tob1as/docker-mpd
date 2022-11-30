@@ -10,14 +10,14 @@
 # be disabled and audio files will only be accepted over ipc socket (using
 # file:// protocol) or streaming files over an accepted protocol.
 #
-music_directory		"/var/lib/mpd/music"
+#music_directory		"~/music"
 #
 # This setting sets the MPD internal playlist directory. The purpose of this
 # directory is storage for playlists created by MPD. The server will use
 # playlist files not created by the server but only if they are in the MPD
 # format. This setting defaults to playlist saving being disabled.
 #
-playlist_directory		"/var/lib/mpd/playlists"
+#playlist_directory		"~/.mpd/playlists"
 #
 # This setting sets the location of the MPD database. This file is used to
 # load the database at server start up and store the database while the
@@ -25,7 +25,7 @@ playlist_directory		"/var/lib/mpd/playlists"
 # MPD to accept files over ipc socket (using file:// protocol) or streaming
 # files over an accepted protocol.
 #
-db_file			"/var/lib/mpd/data/database"
+#db_file			"~/.mpd/database"
 
 # These settings are the locations for the daemon log files for the daemon.
 #
@@ -35,7 +35,7 @@ db_file			"/var/lib/mpd/data/database"
 # If you use systemd, do not configure a log_file.  With systemd, MPD
 # defaults to the systemd journal, which is fine.
 #
-#log_file		"/var/log/mpd/mpd.log"
+log_file		"syslog"
 
 # This setting sets the location of the file which stores the process ID
 # for use of mpd --kill and some init scripts. This setting is disabled by
@@ -43,19 +43,19 @@ db_file			"/var/lib/mpd/data/database"
 #
 # If you use systemd, do not configure a pid_file.
 #
-pid_file			"/run/mpd/mpd.pid"
+#pid_file			"~/.mpd/pid"
 
 # This setting sets the location of the file which contains information about
 # most variables to get MPD back into the same general shape it was in before
 # it was brought down. This setting is disabled by default and the server
 # state will be reset on server start up.
 #
-state_file			"/var/lib/mpd/data/state"
+#state_file			"~/.mpd/state"
 #
 # The location of the sticker database.  This is a database which
 # manages dynamic information attached to songs.
 #
-sticker_file			"/var/lib/mpd/data/sticker.sql"
+#sticker_file			"~/.mpd/sticker.sql"
 #
 ###############################################################################
 
@@ -74,7 +74,7 @@ user		"mpd"
 # This is useful if MPD needs to be a member of group such as "audio" to
 # have permission to use sound card.
 #
-group				"nogroup"
+#group				"nogroup"
 #
 # This setting sets the address for the daemon to listen on. Careful attention
 # should be paid if this is assigned to anything other than the default, any.
@@ -82,7 +82,7 @@ group				"nogroup"
 # systemd socket activation is in use.
 #
 # For network
-bind_to_address		"0.0.0.0"
+#bind_to_address		"any"
 #
 # And for Unix Socket
 #bind_to_address		"~/.mpd/socket"
@@ -90,7 +90,7 @@ bind_to_address		"0.0.0.0"
 # This setting is the TCP port that is desired for the daemon to get assigned
 # to.
 #
-port				"6600"
+#port				"6600"
 #
 # Suppress all messages below the given threshold.  Use "verbose" for
 # troubleshooting. Available setting arguments are "notice", "info", "verbose",
@@ -273,19 +273,17 @@ input {
 #
 # An example of a httpd output (built-in HTTP streaming server):
 #
-audio_output {
-	type		"httpd"
-	name		"MPD HTTP Audio Stream"
-	encoder		"lame"		# optional, vorbis or lame
-	port		"8000"
-	bind_to_address	"0.0.0.0"		# optional, IPv4 or IPv6
+#audio_output {
+#	type		"httpd"
+#	name		"My HTTP Stream"
+#	encoder		"vorbis"		# optional, vorbis or lame
+#	port		"8000"
+#	bind_to_address	"0.0.0.0"		# optional, IPv4 or IPv6
 ##	quality		"5.0"			# do not define if bitrate is defined
-	bitrate		"320"			# do not define if quality is defined
+#	bitrate		"128"			# do not define if quality is defined
 #	format		"44100:16:1"
-	max_clients	"0"			# optional 0=no limit
-	always_on   "yes"
-	#tags        "yes"
-}
+#	max_clients	"0"			# optional 0=no limit
+#}
 #
 # An example of a pulseaudio output (streaming to a remote pulseaudio server)
 #
@@ -415,6 +413,6 @@ audio_output {
 # If file or directory names do not display correctly for your locale then you
 # may need to modify this setting.
 #
-filesystem_charset		"UTF-8"
+#filesystem_charset		"UTF-8"
 #
 ###############################################################################

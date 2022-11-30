@@ -1,27 +1,92 @@
 version: '2.4'
 services:
+
   mpd:
     #build:
     #  context: ./
-    #  dockerfile: debian.armhf.Dockerfile
-    ##  dockerfile: alpine.armhf.Dockerfile
-    image: tobi312/rpi-mpd:debian
-    #image: tobi312/rpi-mpd:alpine
-    #image: tobi312/rpi-mpd:alpine-nocap
+    #  dockerfile: alpine.Dockerfile
+    image: tobi312/rpi-mpd:alpine
     container_name: mpd
+    restart: unless-stopped
     ports:
-      - 6600:6600
-      - 8000:8000
+      - 6600:6600/tcp
+      - 8000:8000/tcp
     volumes:
-      - ./music:/var/lib/mpd/music:rw
+      - ./Music:/var/lib/mpd/music:ro
       - ./playlists:/var/lib/mpd/playlists:rw
       - ./data:/var/lib/mpd/data:rw
       #- ./mpd.conf:/etc/mpd.conf:rw
       ## Time:
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
-    devices:
-      - "/dev/snd:/dev/snd"
-    cap_add:
-      - SYS_NICE
-    restart: unless-stopped
+    #devices:
+    #  - "/dev/snd:/dev/snd"
+    #cap_add:
+    #  - SYS_NICE
+    healthcheck:
+      test: ["CMD-SHELL", "nc -nzv -w 3 127.0.0.1 6600 || exit 1"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+  
+#  # https://github.com/jcorporation/myMPD
+#  mympd:
+#    image: ghcr.io/jcorporation/mympd/mympd:latest
+#    container_name: mympd
+#    restart: unless-stopped
+#    ports:
+#      - 8080:80/tcp
+#      - 8443:443/tcp
+#    environment:
+#      - TZ=Europe/Berlin
+#      - UMASK_SET=022 #optional
+#      # Notice: After the first start all environment variables are ignored, except loglevel. 
+#      - MPD_HOST=mpd
+#      - MPD_PORT=6600
+#      #- MPD_TIMEOUT=30
+#      #- MYMPD_ACL=+0.0.0.0/0
+#      #- MYMPD_COVERCACHE_KEEP_DAYS=31
+#      #- MYMPD_HTTP_HOST=0.0.0.0
+#      #- MYMPD_HTTP_PORT=80
+#      #- MYMPD_LOGLEVEL=5
+#      #- MYMPD_LUALIBS=all
+#      #- MYMPD_SCRIPTACL=+127.0.0.1
+#      - MYMPD_SSL=false
+#      #- MYMPD_SSL_PORT=443
+#      #- MYMPD_SSL_SAN=mpd.example.com
+#      #- MYMPD_CUSTOM_CERT=false
+#      #- MYMPD_SSL_CERT=/var/lib/mympd/ssl/server.crt
+#      #- MYMPD_SSL_KEY=/var/lib/mympd/ssl/server.key
+#    volumes:
+#      - ./Music/:/music/:ro
+#      - ./playlists/:/playlists/:ro
+#      - ./mympd/:/var/lib/mympd/:rw
+#    healthcheck:
+#      test: ["CMD-SHELL", "nc -nzv -w 3 127.0.0.1 80 || exit 1"]
+#      interval: 60s
+#      timeout: 5s
+#      retries: 3
+
+##  # https://github.com/rain0r/ampd
+##  ampd:
+##    image: rain0r/ampd:latest
+##    container_name: ampd
+##    restart: unless-stopped
+##    ports:
+##      - 8080:8080/tcp
+##    environment:
+##      - MPD_SERVER=mpd
+##      - MPD_PORT=6600
+##      #- MPD_PASSWORD=
+##      - MPD_MUSIC_DIRECTORY=/var/lib/mpd/music
+##      #- HOME_DIR=/root/.local/share/ampd
+##      - SERVER_ADDRESS=0.0.0.0
+##      - SERVER_PORT=8080
+##      - LOCAL_COVER_CACHE=true
+##      - MB_COVER_SERVICE=true
+##      - RESET_MODES_ON_CLEAR=false
+##      - CREATE_NEW_PLAYLISTS=true
+##      - DELETE_EXISTING_PLAYLISTS=true
+##    volumes:
+##      - ./ampd:/root/.local/share/ampd:rw
+##      - ./Music:/var/lib/mpd/music:ro
