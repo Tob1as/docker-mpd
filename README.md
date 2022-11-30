@@ -47,8 +47,8 @@ services:
     container_name: mpd
     restart: unless-stopped
     ports:
-      - 6600:6600
-      - 8000:8000
+      - 6600:6600  # MPD Client
+      - 8000:8000  # Stream
     volumes:
       - ./Music:/var/lib/mpd/music:rw
       - ./playlists:/var/lib/mpd/playlists:rw
