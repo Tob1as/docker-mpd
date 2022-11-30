@@ -56,8 +56,6 @@ services:
       #- ./mpd.conf:/etc/mpd.conf:rw
     devices:
       - "/dev/snd:/dev/snd"
-    cap_add:
-      - SYS_NICE
 ```
 
 #### Troubleshooting
