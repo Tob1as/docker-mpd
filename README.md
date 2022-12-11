@@ -1,8 +1,8 @@
 # MPD - Music Player Daemon (Docker Image)
 
 ### Supported tags
--	[`debian` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/debian.Dockerfile)
--	[`alpine` (*Dockerfile*)](https://github.com/Tob1asDocker/rpi-mpd/blob/master/alpine.Dockerfile) (Recommended, small image)
+-	[`debian` (*Dockerfile*)](https://github.com/Tob1as/docker-mpd/blob/master/debian.Dockerfile)
+-	[`alpine` (*Dockerfile*)](https://github.com/Tob1as/docker-mpd/blob/master/alpine.Dockerfile) (Recommended, small image)
 
 ### What is MPD?
 Music Player Daemon (MPD) is a free and open music player server. It plays audio files, organizes playlists and maintains a music database. In order to interact with it, a client program is needed. The MPD distribution includes mpc, a simple command line client.
@@ -26,7 +26,7 @@ docker run --name mpd \
 ```
 
 optional (own config): 
-1. download [mpd.conf](https://github.com/Tob1asDocker/rpi-mpd/blob/master/mpd.conf) and edit
+1. download [mpd.conf](https://github.com/Tob1as/docker-mpd/blob/master/mpd.conf) and edit
 2. add to docker run command: ``` -v $(pwd)/mpd.conf:/etc/mpd.conf ```
 
 
@@ -34,7 +34,7 @@ http://localhost:8000 for Stream | Host: Host/IP , Port: 6600 for MPD Client.
 
 **Clients**:  
 List of MPD Clients you can find here: https://www.musicpd.org/clients/  
-Examples: [mympd](https://github.com/jcorporation/myMPD) or [ampd](https://github.com/rain0r/ampd), see [docker-compose.yml](https://github.com/Tob1asDocker/rpi-mpd/blob/master/docker-compose.yml)-File.
+Examples: [mympd](https://github.com/jcorporation/myMPD) or [ampd](https://github.com/rain0r/ampd), see [docker-compose.yml](https://github.com/Tob1as/docker-mpd/blob/master/docker-compose.yml)-File.
 
 #### Docker-Compose
 
@@ -73,4 +73,4 @@ mkdir {Music,playlists,data} && chmod 777 {Music,playlists,data}
 
 ### This Image on
 * [DockerHub](https://hub.docker.com/r/tobi312/rpi-mpd)
-* [GitHub](https://github.com/Tob1asDocker/rpi-mpd)
+* [GitHub](https://github.com/Tob1as/docker-mpd)

@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.authors="Tobias Hargesheimer <docker@ison.ws>" \
     org.opencontainers.image.created="${BUILD_DATE}" \
     org.opencontainers.image.revision="${VCS_REF}" \
     org.opencontainers.image.url="https://hub.docker.com/r/tobi312/rpi-mpd" \
-    org.opencontainers.image.source="https://github.com/Tob1asDocker/rpi-mpd"
+    org.opencontainers.image.source="https://github.com/Tob1as/docker-mpd"
 
 COPY mpd.conf /etc/mpd.conf.new
 

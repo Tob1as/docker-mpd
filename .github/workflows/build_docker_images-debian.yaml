@@ -31,7 +31,9 @@ jobs:
           COMMIT_HASH=${GITHUB_SHA::8}
           GITHUB_REPO=${GITHUB_REPOSITORY,,}
           GITHUB_REPO_SHORT=${GITHUB_REPO#*/}
-          DOCKER_REPO=${{ secrets.DOCKER_USERNAME }}/${GITHUB_REPO_SHORT}
+          GITHUB_REPO_SHORT=${GITHUB_REPO_SHORT#"docker-"}
+          #DOCKER_REPO=${{ secrets.DOCKER_USERNAME }}/${GITHUB_REPO_SHORT}
+          DOCKER_REPO=${{ secrets.DOCKER_USERNAME }}/rpi-mpd
           #REDHAT_QUAY_REPO=${{ secrets.REDHAT_QUAY_USERNAME }}/${GITHUB_REPO_SHORT}
           
           # Set output parameters to GitHub action.
