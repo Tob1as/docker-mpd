@@ -1,4 +1,4 @@
-name: 'build docker images: CherryMusic (Debian)'
+name: 'build docker images: MPD (Debian)'
 
 on:
   #push:
@@ -43,7 +43,6 @@ jobs:
           echo ::set-output name=github_repo::${GITHUB_REPO}
           echo ::set-output name=docker_repo::${DOCKER_REPO}
           #echo ::set-output name=redhat_quay_repo::${REDHAT_QUAY_REPO}
-          echo ::set-output name=cherrymusic_version::${CHERRYMUSIC_VERSION}
 
       - name: Set up QEMU
         id: qemu
