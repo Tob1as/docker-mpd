@@ -11,6 +11,9 @@ services:
     ports:
       - 6600:6600/tcp  # MPD Client
       - 8000:8000/tcp  # Stream
+    ## PipeWire support
+    #environment:
+      #- XDG_RUNTIME_DIR=/tmp
     volumes:
       - ./Music:/var/lib/mpd/music:ro
       - ./playlists:/var/lib/mpd/playlists:rw
@@ -19,6 +22,8 @@ services:
       ## Time:
       #- /etc/timezone:/etc/timezone:ro
       #- /etc/localtime:/etc/localtime:ro
+      ## PipeWire support by mounting the host socket
+      #- /run/user/1000/pipewire-0:/tmp/pipewire-0
     #devices:
     #  - "/dev/snd:/dev/snd"
     #cap_add:
@@ -28,7 +33,7 @@ services:
       interval: 60s
       timeout: 5s
       retries: 3
-  
+
 #  # https://github.com/jcorporation/myMPD
 #  mympd:
 #    image: ghcr.io/jcorporation/mympd/mympd:latest
@@ -40,7 +45,7 @@ services:
 #    environment:
 #      - TZ=Europe/Berlin
 #      - UMASK_SET=022 #optional
-#      # Notice: After the first start all environment variables are ignored, except loglevel. 
+#      # Notice: After the first start all environment variables are ignored, except loglevel.
 #      - MPD_HOST=mpd
 #      - MPD_PORT=6600
 #      #- MPD_TIMEOUT=30

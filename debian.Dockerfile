@@ -19,6 +19,8 @@ RUN set -eux ; \
     apt-get install -y --no-install-recommends \
         mpd \
         mpc \
+        pipewire-audio wireplumber \
+        pipewire-media-session- \
     ; \
     rm -rf /var/lib/apt/lists/* ; \
     mkdir /var/lib/mpd/data ; \
