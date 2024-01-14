@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:stable-slim
 
 ARG BUILD_DATE
 ARG VCS_REF
