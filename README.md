@@ -4,6 +4,8 @@
 -	[`debian` (*Dockerfile*)](https://github.com/Tob1as/docker-mpd/blob/master/debian.Dockerfile)
 -	[`alpine` (*Dockerfile*)](https://github.com/Tob1as/docker-mpd/blob/master/alpine.Dockerfile) (Recommended, small image)
 
+Alternatively use this MPD Docker image: https://github.com/giof71/mpd-alsa-docker
+
 ### What is MPD?
 Music Player Daemon (MPD) is a free and open music player server. It plays audio files, organizes playlists and maintains a music database. In order to interact with it, a client program is needed. The MPD distribution includes mpc, a simple command line client.
 > [wikipedia.org/wiki/Music_Player_Daemon](https://en.wikipedia.org/wiki/Music_Player_Daemon) 
